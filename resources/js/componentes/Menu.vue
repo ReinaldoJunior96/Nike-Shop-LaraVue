@@ -13,7 +13,7 @@
         <i class="fas fa-shopping-cart text-lg cursor-pointer text-claro"></i>
         <div
           class="
-            hidden
+            
             z-50
             flex-col
             absolute
