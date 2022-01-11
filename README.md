@@ -9,5 +9,5 @@
 # Objetivo do projeto
   - Simulação de um carrinho de compras.
 
-![Screenshot](nike1.png)
-![Screenshot](nike2.png)
+![Screenshot](photo1.png)
+![Screenshot](photo2.png)
