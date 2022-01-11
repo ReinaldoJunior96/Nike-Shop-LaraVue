@@ -13,7 +13,7 @@
         <i class="fas fa-shopping-cart text-lg cursor-pointer text-claro"></i>
         <div
           class="
-            
+            hidden
             z-50
             flex-col
             absolute
@@ -29,17 +29,32 @@
             class="fas fa-sort-up absolute fa-2x -top-3 right-9 text-claro"
           ></i>
           <ul class="text-white">
-            <li class="border-b-2">
-              <i class="fas fa-window-close text-red-500 mr-2"></i> Nike SB Dun
-              Low Pro | x1 | R$ 640,00
+            <li
+              v-for="produto in this.$store.state.carrinho"
+              :key="produto"
+              class="border-b-2"
+            >
+              <i class="fas fa-window-close text-red-500 mr-2"></i>
+              {{ produto.produto }} | x1 |
+              {{
+                produto.preco.toLocaleString("pt-br", {
+                  style: "currency",
+                  currency: "BRL",
+                })
+              }}
             </li>
-            <li class="border-b-2">
-              <i class="fas fa-window-close text-red-500 mr-2"></i> Nike SB Dun
-              Low Pro | x1 | R$ 640,00
-            </li>
+          </ul>
+          <ul>
             <li class="mt-3">
-              Total:
-              <span class="bg-green-400 p-1 rounded">R$ 1280,00</span>
+              <span class="text-white">Total: </span>
+              <span class="bg-green-400 ml-3 p-1 rounded"
+                >{{
+                  calcularTotal.toLocaleString("pt-br", {
+                    style: "currency",
+                    currency: "BRL",
+                  })
+                }}
+              </span>
             </li>
           </ul>
         </div>
@@ -51,6 +66,25 @@
 <script>
 export default {
   name: "Menu",
+  data() {
+    return {
+      precoUnitario: Number,
+    };
+  },
+  methods: {
+    calcularUn(preco) {
+      return (this.precoUnitario = preco);
+    },
+  },
+  computed: {
+    calcularTotal() {
+      var totalCarrinho = 0;
+      this.$store.state.carrinho.filter(function (items) {
+        totalCarrinho += items.preco;
+      });
+      return totalCarrinho;
+    },
+  },
 };
 </script>
 
